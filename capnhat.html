@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý thiết bị</title>
+    <link rel="stylesheet" href="qlthietbi.css">
+    <style>
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        label {
+            width: 100%;
+            font-weight: bold;
+        }
+        .input-field {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .input-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+        .submit-btn {
+            background-color: #00247d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: block;
+            width: 100px;
+        }
+        .submit-btn:hover {
+            background-color: #001a5e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="deviceForm">
+            <div class="form-row">
+                <label>Trạm thu phí:</label>
+                <select name="tram" class="input-field">
+                    <option>Km104</option>
+                    <option>Km102</option>
+                    <option>QL37</option>
+                    <option>TL242</option>
+                    <option>QL279</option>
+                    <option>Km45</option>
+                    <option>Km93</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Tên thiết bị:</label>
+                <input type="text" name="tenThietBi" class="input-field" placeholder="Nhập tên thiết bị">
+            </div>
+            <div class="form-row">
+                <label>Model:</label>
+                <input type="text" name="model" class="input-field" placeholder="Nhập model">
+            </div>
+            <div class="form-row">
+                <label>Serial:</label>
+                <input type="text" name="serial" class="input-field" placeholder="Nhập serial">
+            </div>
+            <div class="form-row">
+                <label>Vị trí lắp đặt:</label>
+                <input type="text" name="viTri" class="input-field" placeholder="Nhập vị trí lắp đặt">
+            </div>
+            <div class="form-row">
+                <label>Tình trạng hư hỏng:</label>
+                <textarea name="tinhTrang" class="input-textarea" placeholder="Nhập tình trạng hư hỏng..."></textarea>
+            </div>
+            <div class="form-row">
+                <label>Thời gian đưa vào sử dụng:</label>
+                <input type="date" name="ngaySuDung" class="input-field">
+            </div>
+            <div class="form-row">
+                <label>Thời gian hư hỏng:</label>
+                <input type="date" name="ngayHuHong" class="input-field">
+            </div>
+            <div class="form-row">
+                <label>Thời gian sửa chữa:</label>
+                <input type="date" name="ngaySuaChua" class="input-field">
+            </div>
+            <div class="form-row">
+                <button type="submit" class="submit-btn">Gửi</button>
+            </div>
+        </form>
+    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("deviceForm"); // Đúng ID form
+        if (!form) {
+            console.error("Không tìm thấy form với ID 'deviceForm'.");
+            return;
+        }
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const data = {
+                tram: document.querySelector("[name='tram']").value,
+                tenThietBi: document.querySelector("[name='tenThietBi']").value,
+                model: document.querySelector("[name='model']").value,
+                serial: document.querySelector("[name='serial']").value
+            };
+
+            try {
+                const response = await fetch("https://script.google.com/macros/s/AKfycbwWvcMzQDIQg0N_iZyi4WrSBtoKyEb3a6ulcC38hzwJaJXXOxk5j4Wrd7jmFOMw7TqyKQ/exec", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data),
+                    mode: "cors"
+                });
+
+                if (!response.ok) {
+                    throw new Error("Lỗi mạng hoặc quyền truy cập bị từ chối.");
+                }
+
+                const result = await response.json();
+                alert("Phản hồi từ server: " + JSON.stringify(result));
+            } catch (error) {
+                alert("Lỗi: " + error.message);
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>
