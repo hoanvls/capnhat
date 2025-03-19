@@ -1,0 +1,184 @@
+/* Đảm bảo body và html full chiều cao */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('https://deoca.vn/file/banner/1695181765-baner%20web-01%20(1).jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%; /* Tự động co giãn */
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.menu {
+    background-color: #00247d;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu a {
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.menu a:hover {
+    background-color: #001a5e;
+}
+
+.content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Điều chỉnh bảng để phù hợp với kích thước màn hình */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    min-width: 600px; /* Đảm bảo bảng không quá nhỏ */
+}
+
+th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #00247d;
+    color: white;
+}
+
+/* Mobile: Tự động cuộn ngang nếu không đủ chỗ */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .menu {
+        flex-direction: column;
+    }
+
+    .menu a {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    .table-container {
+        overflow-x: auto; /* Cuộn ngang nếu bảng quá rộng */
+    }
+
+    table {
+        font-size: 14px;
+        min-width: 500px; /* Giữ bảng không quá nhỏ */
+        white-space: nowrap;
+    }
+
+    th, td {
+        padding: 6px;
+        font-size: 12px; /* Giảm kích thước chữ */
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: #00247d;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 0 0 10px 10px;
+    width: 98%;
+}
+/* Định dạng chung */
+/* Định dạng chung */
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Các phần tử nhập */
+.search-container input,
+.search-container select,
+.search-container button {
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Thiết lập cho desktop */
+@media (min-width: 768px) {
+    .search-container {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Thiết lập cho mobile */
+@media (max-width: 767px) {
+    .search-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+
+    .input-group {
+        display: flex;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .date-range {
+        display: flex;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 5px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .search-container input,
+    .search-container select,
+    .search-container button {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
